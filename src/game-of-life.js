@@ -38,16 +38,20 @@ export default class GameOfLife {
             for (let j = 1; j < this.size - 1; j++) {
                 let currenTGrid = this.tempGridArray[i][j];
                 let aliveNeighbours = this.findAliveNeighbours(i, j);
-                if (aliveNeighbours < 2) {
-                    this.tempGridArray[i][j] = 0;
-                } else if (aliveNeighbours === 3) {
-                    this.tempGridArray[i][j] = 0 ? 0 : 1;
-                } else if (aliveNeighbours === 2 || aliveNeighbours === 3) {
-                    this.tempGridArray[i][j] = 1 ? 1 : 0;
-                } else if (aliveNeighbours > 3) {
-                    this.tempGridArray[i][j] = 0;
-                }
 
+                if (this.tempGridArray[i][j] === 0) {
+                    if (aliveNeighbours === 3) {
+                        this.tempGridArray[i][j] = 0;
+                    }
+                } else if (this.tempGridArray[i][j] === 1) {
+                    if (aliveNeighbours < 2) {
+                        this.tempGridArray[i][j] = 0;
+                    } else if (aliveNeighbours === 2 || aliveNeighbours === 3) {
+                        this.tempGridArray[i][j] = 1;
+                    } else if (aliveNeighbours > 3) {
+                        this.tempGridArray[i][j] = 0;
+                    }
+                }
             }
         }
         this.drawGrids();
