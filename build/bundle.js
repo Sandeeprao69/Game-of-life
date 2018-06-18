@@ -114,6 +114,8 @@ class GameOfLife {
 
                 if (this.tempGridArray[i][j] === 0) {
                     if (aliveNeighbours === 3) {
+                        this.tempGridArray[i][j] = 1;
+                    } else {
                         this.tempGridArray[i][j] = 0;
                     }
                 } else if (this.tempGridArray[i][j] === 1) {
@@ -127,7 +129,15 @@ class GameOfLife {
                 }
             }
         }
+        for (var j = 0; j < this.size; j++) {
+            //iterate through rows
+            for (var k = 0; k < this.size; k++) {
+                //iterate through columns
+                this.gridArray[j][k] = this.tempGridArray[j][k];
+            }
+        }
         this.drawGrids();
+        requestAnimationFrame(this.generateNextGeneration.bind(this));
     }
 
     findAliveNeighbours(i, j) {
@@ -151,12 +161,12 @@ class GameOfLife {
 
         for (var j = 1; j < this.size; j++) {
             for (var k = 1; k < this.size; k++) {
-                if (this.tempGridArray[j][k] === 1) {
+                if (this.gridArray[j][k] === 1) {
 
                     ctx.fillStyle = "#FF0000";
                     ctx.fillRect(j, k, 1, 1);
                 } else {
-                    ctx.fillStyle = "#000000";
+                    ctx.fillStyle = "#FFFFFF";
                     ctx.fillRect(j, k, 1, 1);
                 }
             }
@@ -179,10 +189,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 window.onload = function () {
 
     let game = new __WEBPACK_IMPORTED_MODULE_0__game_of_life__["a" /* default */](400);
-
-    setInterval(function () {
-        game.generateNextGeneration();
-    }, 1000);
+    game.generateNextGeneration();
+    // setInterval(function() {
+    //     game.generateNextGeneration();
+    // }, 1000);
 };
 
 /***/ }
