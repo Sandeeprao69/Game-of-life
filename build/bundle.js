@@ -91,12 +91,8 @@ class GameOfLife {
         }
     }
 
-    getArray() {
-        console.log(this.gridArray);
-    }
-
     fillRandom() {
-        let fillArray = this.size / 2;
+        let fillArray = this.size;
         for (let i = 1; i < fillArray - 1; i++) {
             for (let j = 1; j < fillArray - 1; j++) {
                 let radnomNum = Math.floor(Math.random() * 2);
@@ -131,8 +127,6 @@ class GameOfLife {
 
     findAliveNeighbours(i, j) {
         let alive = 0;
-
-        if (j === 0) {}
 
         alive += this.tempGridArray[i - 1][j - 1];
         alive += this.tempGridArray[i - 1][j];
@@ -175,20 +169,11 @@ class GameOfLife {
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__game_of_life__ = __webpack_require__(0);
-//import './image_viewer';
-
-//const total = sum(5, 6);
-//let login = new Login("sandeep", "rao");
-//login.login();
-//page.init();
-//console.log(total);
 
 
 window.onload = function () {
 
     let game = new __WEBPACK_IMPORTED_MODULE_0__game_of_life__["a" /* default */](400);
-
-    game.getArray();
 
     setInterval(function () {
         game.generateNextGeneration();

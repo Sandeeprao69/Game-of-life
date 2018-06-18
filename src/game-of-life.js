@@ -18,12 +18,8 @@ export default class GameOfLife {
         }
     }
 
-    getArray() {
-        console.log(this.gridArray);
-    }
-
     fillRandom() {
-        let fillArray = this.size / 2;
+        let fillArray = this.size;
         for (let i = 1; i < fillArray - 1; i++) {
             for (let j = 1; j < fillArray - 1; j++) {
                 let radnomNum = Math.floor(Math.random() * 2);
@@ -59,10 +55,6 @@ export default class GameOfLife {
 
     findAliveNeighbours(i, j) {
         let alive = 0;
-
-        if (j === 0) {
-
-        }
 
         alive += this.tempGridArray[i - 1][j - 1];
         alive += this.tempGridArray[i - 1][j];
